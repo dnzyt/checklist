@@ -5,6 +5,8 @@ import {LoginRoutingModule} from './login-routing.module';
 import { StoreModule } from '@ngrx/store';
 
 import * as fromLogin from './store';
+import { EffectsModule } from '@ngrx/effects';
+import { LoginEffects } from './store/effects/login.effects';
 
 
 
@@ -13,6 +15,7 @@ import * as fromLogin from './store';
   imports: [
     SharedModule,
     StoreModule.forFeature(fromLogin.loginFeatureKey, fromLogin.reducer),
+    EffectsModule.forFeature([LoginEffects]),
     LoginRoutingModule
   ]
 })
