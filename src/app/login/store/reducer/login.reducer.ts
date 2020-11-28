@@ -20,12 +20,13 @@ const initialState: State = {
   lang: 'EN'
 };
 
-export const reducer = (state: State, action) => createReducer(
+export const reducer = createReducer(
   initialState,
-  on(LoginActions.login, s => {
-    return {...s, username: action.username, password: action.password};
+  // on function can receive multiple actions if these actions share the same reducer
+  on(LoginActions.login, (state, action) => {
+    return { ...state, username: action.username, password: action.password };
   })
-)(state, action);
+);
 
 export const selectLogin = createFeatureSelector<fromApp.State, State>(loginFeatureKey);
 
